@@ -1,0 +1,11 @@
+
+Database : using mongo db and mongoose
+Front-end: using bootstrap, font-awesome
+Front-end routing: using angular-route
+Back-end:  
+1, bcrypt-nodejs : to encrypt user’s password.
+2, passport, passport-facebook, passport-google-oauth, passport-local : to let user login with their facebook and google accounts.
+3, express-session, body-parser, cookie-parser: user authentication
+4, jquery: using jquery to let page scroll back to top.
+
+Third party API: AMDb API: http://www.omdbapi.com/
