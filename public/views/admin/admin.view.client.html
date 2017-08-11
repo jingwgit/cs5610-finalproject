@@ -1,0 +1,37 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav nav-pills navbar-fixed-top wd-text-bold wd-text-gray">
+            <li>
+                <a class="pull-left wd-text-gray wd-text-bold">
+                    <span class="glyphicon glyphicon-film"></span>
+                </a>
+            </li>
+            <li><a href="#!/">Home</a></li>
+            <li><a class="wd-current" ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+            <li><a ng-show="model.currentUser._id" href="#!/profile">Profile</a></li>
+            <li><a ng-show="!model.currentUser._id" href="#!/login">Login</a></li>
+            <li><a ng-show="!model.currentUser._id" href="#!/register">Register</a></li>
+            <li><a ng-show="model.currentUser._id" href="#!/review/search">Explore</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+
+<div class="container-fluid wd-text-gray">
+    <h1>Admin</h1>
+
+    <ul class="list-group">
+        <li class="wd-list-item-borderless">
+            <a href="#!/admin/user">
+                <h2>User</h2>
+            </a>
+        </li>
+        <li class="wd-list-item-borderless">
+            <a href="#!/admin/review">
+                <h2>Review</h2>
+            </a>
+        </li>
+    </ul>
+
+</div>

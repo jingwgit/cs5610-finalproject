@@ -1,0 +1,182 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav nav-pills navbar-fixed-top wd-text-bold wd-text-gray">
+            <li>
+                <a class="pull-left wd-text-gray wd-text-bold">
+                    <span class="glyphicon glyphicon-film"></span>
+                </a>
+            </li>
+            <li><a href="#!/">Home</a></li>
+            <li><a class="wd-current" ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+            <li><a ng-show="model.currentUser._id" href="#!/profile">Profile</a></li>
+            <li><a ng-show="!model.currentUser._id" href="#!/login">Login</a></li>
+            <li><a ng-show="!model.currentUser._id" href="#!/register">Register</a></li>
+            <li><a ng-show="model.currentUser._id" href="#!/review/search">Explore</a></li>
+        </ul>
+    </div>
+</nav>
+
+<h1 class="wd-text-gray">Users</h1>
+
+<div ng-show="!model.user._id" class="bs-example" data-example-id="table-within-panel">
+    <div class="panel panel-default">
+        <div class="panel-heading">Create User</div>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Password</th>
+                    <th>Roles</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>
+                        <input ng-model="model.user.firstName"
+                               class="form-control"/>
+                    </td>
+                    <td>
+                        <input ng-model="model.user.lastName"
+                               class="form-control"/>
+                    </td>
+                    <td>
+                        <input ng-model="model.user.username"
+                               class="form-control"/>
+                    </td>
+                    <td>
+                        <input ng-model="model.user.password"
+                               class="form-control"/>
+                    </td>
+                    <td>
+                        <input ng-model="model.user.roles"
+                               class="form-control"/>
+                    </td>
+                    <td>
+                        <a ng-click="model.createUser(model.user); model.user = {}"
+                            class="wd-text-gray">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </a>
+
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+<div ng-show="!model.user._id" class="bs-example" data-example-id="table-within-panel">
+    <div class="panel panel-default">
+        <div class="panel-heading">User List</div>
+        <div class="panel-body">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Edit</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Username</th>
+                    <th>Roles</th>
+                </tr>
+                </thead>
+
+                <tbody ng-repeat="user in model.users">
+                <tr>
+                    <th scope="row">
+                        <a ng-click="model.selectUser(user)" class="wd-text-gray">
+                            <span class="glyphicon glyphicon-pencil"></span>
+                        </a>
+                    </th>
+                    <td>{{user.firstName}}</td>
+                    <td>{{user.lastName}}</td>
+                    <td>{{user.username}}</td>
+                    <td>{{user.roles}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div ng-show="model.user._id" id="profile" class="container">
+
+    <div ng-show="model.message"
+         class="alert alert-success"
+         role="alert">{{model.message}}
+    </div>
+
+    <form class="wd-form-bottom-padding wd-text-gray">
+        <label for="username">Username</label>
+        <input type="text"
+               readonly
+               ng-model="model.user.username"
+               class="form-control"
+               placeholder="Username"
+               id="username">
+        <label for="firstName">First Name</label>
+        <input type="text"
+               ng-model="model.user.firstName"
+               class="form-control"
+               placeholder="first name"
+               id="firstName"
+               required>
+        <label for="LastName">Last Name</label>
+        <input type="text"
+               ng-model="model.user.lastName"
+               class="form-control"
+               placeholder="last name"
+               id="LastName"
+               required>
+        <label for="email">Email</label>
+        <input type="email"
+               ng-model="model.user.email"
+               class="form-control"
+               placeholder="alice@emmail.com"
+               id="email"
+               required>
+        <label for="phone">Phone</label>
+        <input type="tel"
+               ng-model="model.user.phone"
+               class="form-control"
+               id="phone"
+               required>
+
+        <label for="avatar">Profile Photo Url</label>
+        <input type="text"
+               ng-model="model.user.avatar"
+               class="form-control"
+               id="avatar"
+               required>
+
+        <label for="roles">Roles</label>
+        <input type="text"
+               ng-model="model.user.roles"
+               class="form-control"
+               id="roles">
+
+        <label for="bio">Bio</label>
+        <textarea type="text"
+                  ng-model="model.user.bio"
+                  class="form-control"
+                  rows="5"
+                  id="bio">
+       </textarea>
+
+    </form>
+
+
+    <a ng-click="model.updateUser(model.user)"
+       class="btn btn-primary btn-block">update User
+    </a>
+
+    <a ng-click="model.deleteUser(model.user)"
+       class="btn btn-danger btn-block">Delete User
+    </a>
+
+</div>

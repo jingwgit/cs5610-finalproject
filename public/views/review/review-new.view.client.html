@@ -1,0 +1,63 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav nav-pills navbar-fixed-top wd-text-bold wd-text-gray">
+            <li>
+                <a class="pull-left wd-text-gray wd-text-bold">
+                    <span class="glyphicon glyphicon-film"></span>
+                </a>
+            </li>
+            <li><a href="#!/">Home</a></li>
+            <li><a ng-if="model.user.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+            <li><a ng-show="model.user._id" href="#!/profile">Profile</a></li>
+            <li><a ng-show="!model.user._id" href="#!/login">Login</a></li>
+            <li><a ng-show="!model.user._id" href="#!/register">Register</a></li>
+            <li><a ng-show="model.user._id" href="#!/review/search">Explore</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+
+<div class="container-fluid wd-text-gray">
+    <div class="row">
+        <div class="col-xs-4">
+            <h3>{{model.movie.Title}}</h3>
+            <img src="{{model.movie.Poster}}" width="80%" height="auto"/>
+            <h5>Directed by {{model.movie.Director}}</h5>
+            <p>{{model.movie.Plot}}</p>
+            <h5>Actors</h5>
+            <ul>
+                <li ng-repeat="actor in model.movie.Actors.split(',')">
+                    {{actor}}
+                </li>
+            </ul>
+        </div>
+
+        <div class="col-xs-8">
+            <div ng-show="model.error"
+                 class="alert alert-danger"
+                 role="alert">{{model.error}}
+            </div>
+
+            <div ng-show="model.message"
+                 class="alert alert-info">
+                {{model.message}}
+            </div>
+
+            <label for="review-text">What do you think about this movie?</label>
+            <textarea ng-model="model.text"
+                      id="review-text"
+                      class="form-control"
+                      rows="8">
+
+                </textarea>
+
+            <a ng-click="model.createReview()">
+                <button class="btn btn-success btn-block">Post</button>
+            </a>
+
+        </div>
+
+    </div>
+</div>
+

@@ -1,0 +1,78 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav nav-pills navbar-fixed-top wd-text-bold wd-text-gray">
+            <li>
+                <a class="pull-left wd-text-gray wd-text-bold">
+                    <span class="glyphicon glyphicon-film"></span>
+                </a>
+            </li>
+            <li><a href="#!/">Home</a></li>
+            <li><a ng-if="model.user.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+            <li><a ng-show="model.user._id" href="#!/profile">Profile</a></li>
+            <li><a ng-show="!model.user._id" href="#!/login">Login</a></li>
+            <li><a ng-show="!model.user._id" href="#!/register">Register</a></li>
+            <li><a class="wd-current" ng-show="model.user._id" href="#!/review/search">Explore</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class=" container-fluid input-group wd-serach-bar">
+    <input ng-model="model.title"
+           type="text"
+           class="form-control"
+           placeholder="guardians of the galaxy">
+    <span class="input-group-btn">
+        <a ng-click="model.searchMovie(model.title)"
+           class="btn btn-default"
+           type="button">
+            <span class="glyphicon glyphicon-search"></span>
+        </a>
+    </span>
+</div>
+
+<div class="container-fluid wd-text-gray">
+    <div class="row">
+        <div class="col-xs-4">
+            <h3 ng-show="model.movies">Search Results</h3>
+            <div ng-repeat="movie in model.movies" class="media">
+                <div class="media-left media-bottom">
+                    <a ng-click="model.selectMovie(movie.imdbID)">
+                        <img class="media-object" src="{{movie.Poster}}" width="100px">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">{{movie.Title}}</h4>
+                    <p>{{movie.Year}}</p>
+                </div>
+            </div>
+        </div>
+
+        <div ng-show="model.movie" class="col-xs-8">
+            <h3>{{model.movie.Title}}</h3>
+            <img src="{{model.movie.Poster}}" width="250px" height="auto"/>
+            <h4>Directed by {{model.movie.Director}}</h4>
+            <p>{{model.movie.Plot}}</p>
+            <h5>Actors</h5>
+            <ul>
+                <li ng-repeat="actor in model.movie.Actors.split(',')">
+                    {{actor}}
+                </li>
+            </ul>
+
+            <div>
+                <a href="#!/movie/{{model.movie.imdbID}}/review/new">
+                    <button class="btn btn-lg btn-default">Write review for this movie</button>
+                </a>
+
+                <a href="#!/movie/{{model.movie.imdbID}}/review">
+                    <button class="btn btn-lg btn-default">Explore reviews for this movie</button>
+                </a>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+

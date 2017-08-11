@@ -1,0 +1,74 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav nav-pills navbar-fixed-top wd-text-bold wd-text-gray">
+            <li>
+                <a href="#!/" class="pull-left wd-text-gray wd-text-bold">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+            <li><a href="#!/">Home</a></li>
+            <li><a ng-if="model.user.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+            <li><a ng-show="model.user._id" href="#!/profile">Profile</a></li>
+            <li><a ng-show="!model.user._id" href="#!/login">Login</a></li>
+            <li><a class="wd-current" ng-show="!model.user._id" href="#!/register">Register</a></li>
+            <li><a ng-show="model.user._id" href="#!/review/search">Explore</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container wd-text-white">
+    <div ng-show="model.error"
+         class="alert alert-danger"
+         role="alert">{{model.error}}
+    </div>
+
+    <h1 c>Register</h1>
+    <label for="username">Username</label>
+    <input type="text"
+           class="form-control"
+           ng-model="model.username"
+           id="username"
+           placeholder="username"
+           required/>
+
+    <label for="password">Password</label>
+    <input type="password"
+           class="form-control"
+           ng-model="model.password"
+           id="password"
+           placeholder="password"
+           required/>
+
+    <label for="vpassword">Verify Password</label>
+    <input type="password"
+           class="form-control"
+           ng-model="model.vpassword"
+           id="vpassword"
+           placeholder="verify password"
+           required/>
+
+    <label for="firstName">First Name</label>
+    <input type="text"
+           ng-model="model.firstName"
+           class="form-control"
+           placeholder="first name"
+           id="firstName"
+           required>
+
+    <label for="LastName">Last Name</label>
+    <input type="text"
+           ng-model="model.lastName"
+           class="form-control"
+           placeholder="last name"
+           id="LastName"
+           required>
+
+    <a ng-click="model.register()"
+       class="btn btn-primary btn-block">
+        Register
+    </a>
+
+    <a class="btn btn-danger  btn-block"
+       href="#!/login">Cancel</a>
+</div>

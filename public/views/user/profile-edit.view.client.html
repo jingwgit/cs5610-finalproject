@@ -1,0 +1,83 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav nav-pills navbar-fixed-top wd-text-bold wd-text-gray">
+            <li>
+                <a href="#!/profile" class="pull-left wd-text-gray wd-text-bold">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+            <li><a href="#!/">Home</a></li>
+            <li><a ng-if="model.user.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+            <li><a ng-show="model.user._id" href="#!/profile">Profile</a></li>
+            <li><a ng-show="model.user._id" href="#!/review/search">Explore</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <div ng-show="model.message"
+         class="alert alert-success"
+         role="alert">{{model.message}}
+    </div>
+
+   <form class="wd-form-bottom-padding wd-text-gray">
+       <label for="username">Username</label>
+       <input type="text"
+              readonly
+              ng-model="model.user.username"
+              class="form-control"
+              placeholder="Username"
+              id="username">
+       <label for="firstName">First Name</label>
+       <input type="text"
+              ng-model="model.user.firstName"
+              class="form-control"
+              placeholder="first name"
+              id="firstName"
+              required>
+       <label for="LastName">Last Name</label>
+       <input type="text"
+              ng-model="model.user.lastName"
+              class="form-control"
+              placeholder="last name"
+              id="LastName"
+              required>
+       <label for="email">Email</label>
+       <input type="email"
+              ng-model="model.user.email"
+              class="form-control"
+              placeholder="alice@emmail.com"
+              id="email"
+              required>
+       <label for="phone">Phone</label>
+       <input type="tel"
+              ng-model="model.user.phone"
+              class="form-control"
+              id="phone"
+              required>
+
+       <label for="avatar">Profile Photo Url</label>
+       <input type="text"
+              ng-model="model.user.avatar"
+              class="form-control"
+              id="avatar"
+              required>
+
+       <label for="bio">Bio</label>
+       <textarea type="text"
+                 ng-model="model.user.bio"
+                 class="form-control"
+                 rows="5"
+                 id="bio">
+       </textarea>
+
+   </form>
+
+    
+    <a ng-click="model.changeProfile(model.user)"
+       class="btn btn-primary btn-block">update Profile</a>
+
+    <a ng-click="model.unregister()" class="btn btn-danger btn-block">Unregister</a>
+</div>

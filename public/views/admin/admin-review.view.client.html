@@ -1,0 +1,53 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav nav-pills navbar-fixed-top wd-text-bold wd-text-gray">
+            <li>
+                <a class="pull-left wd-text-gray wd-text-bold">
+                    <span class="glyphicon glyphicon-film"></span>
+                </a>
+            </li>
+            <li><a href="#!/">Home</a></li>
+            <li><a class="wd-current" ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+            <li><a ng-show="model.currentUser._id" href="#!/profile">Profile</a></li>
+            <li><a ng-show="!model.currentUser._id" href="#!/login">Login</a></li>
+            <li><a ng-show="!model.currentUser._id" href="#!/register">Register</a></li>
+            <li><a ng-show="model.currentUser._id" href="#!/review/search">Explore</a></li>
+        </ul>
+    </div>
+</nav>
+
+<h1 class="wd-text-gray">Reviews</h1>
+
+<div class="bs-example" data-example-id="table-within-panel">
+    <div class="panel panel-default">
+        <div class="panel-heading">Review List</div>
+        <div class="panel-body">
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Delete</th>
+                    <th>Author</th>
+                    <th>Movie</th>
+                    <th>text</th>
+                    <th>Date Created</th>
+                </tr>
+                </thead>
+
+                <tbody ng-repeat="review in model.reviews">
+                <tr>
+                    <th scope="row">
+                        <a ng-click="model.deleteReview(review)" class="wd-text-gray">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </a>
+                    </th>
+                    <td>{{review._user.username}}</td>
+                    <td>{{review.movieTitle}}</td>
+                    <td>{{review.text}}</td>
+                    <td>{{review.dateCreated | date : 'short'}}</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

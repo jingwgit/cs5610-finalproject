@@ -1,0 +1,107 @@
+<!--Navigation-->
+<nav class="navbar navbar-default navbar-fixed-top topnav" role="navigation">
+        <div >
+            <ul class="nav navbar-nav navbar-left">
+                <li><a href="#!/">Home</a></li>
+                <li><a ng-if="model.currentUser.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+                <li><a ng-show="!model.currentUser._id" href="#!/login">Login</a></li>
+                <li><a ng-show="!model.currentUser._id" href="#!/register">Register</a></li>
+                <li><a ng-show="model.currentUser._id" href="#!/profile">Profile</a></li>
+                <li><a ng-show="model.currentUser._id" href="#!/review/search">Explore</a></li>
+                <li><a ng-show="model.currentUser._id" ng-click="model.logout()">Logout</a></li>
+            </ul>
+        </div>
+</nav>
+
+
+<!-- Header -->
+<a name="about"></a>
+<div class="intro-header">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="intro-message">
+                    <h1>Hello, World</h1>
+                    <h3>Welcom to Movie Crawler!</h3>
+                    <hr class="intro-divider">
+                    <ul class="list-inline intro-social-buttons">
+                        <li>
+                            <a href="https://twitter.com/Northeastern" class="btn btn-default btn-lg"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                        </li>
+                        <li>
+                            <a href="https://www.facebook.com/northeastern/" class="btn btn-default btn-lg"><i class="fa fa-facebook fa-fw"></i> <span class="network-name">facebook</span></a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <p class="copyright text-muted small">Copyright &copy; Northeastern University 2017. All Rights Reserved</p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!--&lt;!&ndash; Footer &ndash;&gt;-->
+<!--<footer>-->
+    <!--<div class="container wd-text-gray">-->
+        <!--<div class="row">-->
+            <!--<div class="col-lg-10 col-lg-offset-1 text-center">-->
+                <!--<h4><strong>Start Bootstrap</strong>-->
+                <!--</h4>-->
+                <!--<p>3481 Melrose Place-->
+                    <!--<br>Beverly Hills, CA 90210</p>-->
+                <!--<ul class="list-unstyled">-->
+                    <!--<li><i class="fa fa-phone fa-fw"></i> (123) 456-7890</li>-->
+                    <!--<li><i class="fa fa-envelope-o fa-fw"></i> <a href="mailto:name@example.com">name@example.com</a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<br>-->
+                <!--<ul class="list-inline">-->
+                    <!--<li>-->
+                        <!--<a href="#"><i class="fa fa-facebook fa-fw fa-3x"></i></a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#"><i class="fa fa-twitter fa-fw fa-3x"></i></a>-->
+                    <!--</li>-->
+                    <!--<li>-->
+                        <!--<a href="#"><i class="fa fa-dribbble fa-fw fa-3x"></i></a>-->
+                    <!--</li>-->
+                <!--</ul>-->
+                <!--<hr class="small">-->
+                <!--<p class="text-muted">Copyright &copy; Your Website 2014</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<a id="to-top" href="#top" class="btn btn-dark btn-lg"><i class="fa fa-chevron-up fa-fw fa-1x"></i></a>-->
+<!--</footer>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

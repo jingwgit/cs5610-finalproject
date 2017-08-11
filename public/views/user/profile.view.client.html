@@ -1,0 +1,84 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav nav-pills navbar-fixed-top wd-text-bold wd-text-gray">
+            <li>
+                <a class="pull-left wd-text-gray wd-text-bold">
+                    <span class="glyphicon glyphicon-film"></span>
+                </a>
+            </li>
+            <li><a href="#!/">Home</a></li>
+            <li><a ng-if="model.user.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+            <li><a class="wd-current" ng-show="model.user._id" href="#!/profile">Profile</a></li>
+            <li><a ng-show="model.user._id" href="#!/review/search">Explore</a></li>
+            <li><a ng-click="model.logout()">Logout</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<div class="container-fluid">
+    <div class="wd-text-gray text-center">
+        <div class="wd-div-text-big">{{model.user.firstName}} {{model.user.lastName}}
+            <a href="#!/profile/edit">
+                <span class="glyphicon glyphicon-pencil"></span><br>
+            </a>
+        </div>
+
+        <br>
+        <img src="{{model.user.avatar}}" class="img-thumbnail" width="200px"/><br>
+        <br>
+        <p>Bio: {{model.user.bio}}</p>
+        <div>
+            <!--<a href="#!/review">Posts <span class="badge">{{model.postNum}}</span></a>-->
+            <a href="#!/user/{{model.user.username}}/following">following <span class="badge">{{model.followingNum}}</span></a>
+            <a href="#!/user/{{model.user.username}}/follower">followers <span class="badge">{{model.followerNum}}</span></a>
+        </div>
+        <br>
+        <p ng-show="{{model.user.phone}}">Tel: {{model.user.phone}}<p/>
+        <p ng-show="{{model.user.email}}">Email: {{model.user.email}}<p/>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div class="container-fluid wd-text-gray wd-review-padding">
+    <h4>My Posts({{model.postNum}}) </h4>
+
+    <div ng-show="model.error"
+         class="alert alert-danger"
+         role="alert">{{model.error}}
+    </div>
+
+    <div ng-show="model.message"
+         class="alert alert-info">
+        {{model.message}}
+    </div>
+
+    <div>
+        <div ng-repeat="review in model.reviews" class="media">
+            <div class="media-left media-middle">
+                <a href="#!/movie/{{review.imdbID}}/review">
+                    <img class="media-object" src="{{review.moviePoster}}" width="80px">
+                </a>
+            </div>
+            <div class="media-body">
+                <h4 class="media-heading">{{review.movieTitle}}</h4>
+                <p>{{review.text}}</p>
+                <div>
+                    {{review.dateCreated | date : 'short'}}
+                </div>
+                <div>
+                    <a href="#!/review/{{review._id}}">
+                        <span class="glyphicon glyphicon-pencil"></span>
+                    </a>
+                    <a ng-click="model.deleteReview(model.user._id, review._id)">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>

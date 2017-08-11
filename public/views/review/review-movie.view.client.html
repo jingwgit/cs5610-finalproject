@@ -1,0 +1,50 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav nav-pills navbar-fixed-top wd-text-bold wd-text-gray">
+            <li>
+                <a class="pull-left wd-text-gray wd-text-bold">
+                    <span class="glyphicon glyphicon-film"></span>
+                </a>
+            </li>
+            <li><a href="#!/">Home</a></li>
+            <li><a ng-if="model.user.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+            <li><a ng-show="model.user._id" href="#!/profile">Profile</a></li>
+            <li><a ng-show="!model.user._id" href="#!/login">Login</a></li>
+            <li><a ng-show="!model.user._id" href="#!/register">Register</a></li>
+            <li><a ng-show="model.user._id" href="#!/review/search">Explore</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid wd-text-gray">
+    <div class="row">
+        <div class="col-xs-4">
+            <h3>{{model.movie.Title}}</h3>
+            <img src="{{model.movie.Poster}}" width="80%" height="auto"/>
+            <h5>Directed by {{model.movie.Director}}</h5>
+            <p>{{model.movie.Plot}}</p>
+            <h5>Actors</h5>
+            <ul>
+                <li ng-repeat="actor in model.movie.Actors.split(',')">
+                    {{actor}}
+                </li>
+            </ul>
+        </div>
+
+        <div ng-show="model.reviews" class="col-xs-8">
+            <h3>Reviews:</h3>
+            <ul ng-repeat="review in model.reviews" class="list-group">
+                <div ng-if="review._user.username !== model.currentUser.username">
+                    <p>{{review.text}}</p>
+                    <div>posted by
+                        <a ng-click="model.navigateByUser(review._user.username)">{{review._user.username}}</a>
+                    </div>
+                    <div>{{review.dateCreated | date : 'short'}}</div>
+                </div>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+

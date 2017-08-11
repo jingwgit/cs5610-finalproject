@@ -1,0 +1,43 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav nav-pills navbar-fixed-top wd-text-bold wd-text-gray">
+            <li>
+                <a href="#!/profile" class="pull-left wd-text-gray wd-text-bold">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+            <li><a href="#!/">Home</a></li>
+            <li><a ng-if="model.user.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+            <li><a ng-show="model.user._id" href="#!/profile">Profile</a></li>
+            <li><a ng-show="!model.user._id" href="#!/login">Login</a></li>
+            <li><a ng-show="!model.user._id" href="#!/register">Register</a></li>
+            <li><a ng-show="model.user._id" href="#!/review/search">Explore</a></li>
+        </ul>
+    </div>
+</nav>
+
+
+
+
+<div class="container-fluid wd-text-gray">
+
+    <div ng-repeat="follower in model.user.followers" class="wd-text-gray">
+        <a href="#!/user/{{follower.username}}/review">
+            <h3>{{follower.firstName}} {{follower.lastName}}</h3>
+        </a>
+        <a href="#!/user/{{follower.username}}/review">
+            <img src="{{follower.avatar}}" class="img-thumbnail" width="200px"/>
+        </a>
+        <p ng-show="follower.bio">Bio: {{follower.bio}}</p>
+        <!--<div>-->
+        <!--<a href="#!/review">Posts <span class="badge">{{model.postNum}}</span></a>-->
+        <!--<a href="#!/user/{{model.user.username}}/following">following <span class="badge">{{model.followingNum}}</span></a>-->
+        <!--<a href="#!/user/{{model.user.username}}/follower">followers <span class="badge">{{model.followerNum}}</span></a>-->
+        <!--</div>-->
+        <!--<span ng-show="{{follower.phone}}" class="glyphicon glyphicon-phone-alt"> {{follower.phone}}</span><br>-->
+        <!--<span ng-show="{{follower.email}}" class="glyphicon glyphicon-envelope"> {{follower.email}}</span>-->
+    </div>
+
+</div>
+
+

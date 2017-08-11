@@ -1,0 +1,73 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+
+        <ul class="nav nav-pills navbar-fixed-top wd-text-bold wd-text-gray">
+            <li>
+                <a class="pull-left wd-text-gray wd-text-bold">
+                    <span class="glyphicon glyphicon-film"></span>
+                </a>
+            </li>
+            <li><a href="#!/">Home</a></li>
+            <li><a ng-if="model.user.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+            <li><a ng-show="model.user._id" href="#!/profile">Profile</a></li>
+            <li><a ng-show="!model.user._id" href="#!/login">Login</a></li>
+            <li><a ng-show="!model.user._id" href="#!/register">Register</a></li>
+            <li><a ng-show="model.user._id" href="#!/review/search">Explore</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container-fluid wd-text-gray">
+    <div class="row">
+
+
+        <div class="col-xs-4 text-center">
+            <h3 >{{model.user.firstName}} {{model.user.lastName}}</h3>
+            <img src="{{model.user.avatar}}" class="img-thumbnail" width="200px"/><br>
+            <a href="#!/user/{{model.user.username}}/following">following <span class="badge">{{model.followingNum}}</span></a>
+            <a href="#!/user/{{model.user.username}}/follower">follower <span class="badge">{{model.followerNum}}</span></a>
+
+            <br>
+            <br>
+
+            <div>
+                <a ng-click="model.followUser()"
+                   ng-if="model.currentUser.following.indexOf(model.user._id) === -1">
+                    <button class="btn btn-default btn-sm">Follow</button>
+                </a>
+                <a ng-click="model.unfollowUser()"
+                   ng-if="model.currentUser.following.indexOf(model.user._id) > -1">
+                    <button class="btn btn-default btn-sm">Unfollow</button>
+                </a>
+            </div>
+
+
+        </div>
+
+        <div class="col-xs-8">
+            <h3>Posts({{model.postNum}})</h3>
+            <div ng-repeat="review in model.reviews" class="media">
+                <div class="media-left media-middle">
+                    <a href="#!/movie/{{review.imdbID}}/review">
+                        <img class="media-object" src="{{review.moviePoster}}" width="80px">
+                    </a>
+                </div>
+                <div class="media-body">
+                    <a href="#!/movie/{{review.imdbID}}/review">
+                        <h4 class="media-heading">{{review.movieTitle}}</h4>
+                    </a>
+
+                    <p>{{review.text}}</p>
+                    <div>{{review.dateCreated | date : 'short'}}</div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+
+

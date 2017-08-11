@@ -1,0 +1,56 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container-fluid">
+        <ul class="nav nav-pills navbar-fixed-top wd-text-bold wd-text-gray">
+            <li>
+                <a href="#!/" class="pull-left wd-text-gray wd-text-bold">
+                    <span class="glyphicon glyphicon-chevron-left"></span>
+                </a>
+            </li>
+            <li><a href="#!/">Home</a></li>
+            <li><a ng-if="model.user.roles.indexOf('ADMIN')>-1" href="#!/admin">Admin</a></li>
+            <li><a class="wd-current" ng-show="!model.user._id" href="#!/login">Login</a></li>
+            <li><a ng-show="model.user._id" href="#!/profile">Profile</a></li>
+            <li><a ng-show="!model.user._id" href="#!/register">Register</a></li>
+            <li><a ng-show="model.user._id" href="#!/review/search">Explore</a></li>
+        </ul>
+    </div>
+</nav>
+
+<div class="container wd-text-white">
+    <div ng-show="model.error"
+         class="alert alert-danger"
+         role="alert">{{model.error}}
+    </div>
+
+    <h1>Login</h1>
+
+    <label for="usernmae">Username</label>
+    <input type="text"
+           class="form-control"
+           ng-model="username"
+           id="usernmae"
+           placeholder="username"/>
+
+    <label for="password">Password</label>
+    <input type="password"
+           class="form-control"
+           ng-model="password"
+           id="password"
+           placeholder="password"/>
+
+    <a ng-click="model.login(username, password)"
+       class="btn btn-success btn-block">
+        Login
+    </a>
+
+    <a href="/auth/google" class="btn btn-danger btn-block">
+        <span class="fa fa-google-plus"></span>
+        Google
+    </a>
+
+    <a href="/auth/facebook" class="btn btn-primary btn-block">
+        <span class="fa fa-facebook"></span>
+        Facebook
+    </a>
+
+</div>
