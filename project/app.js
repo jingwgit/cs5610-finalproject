@@ -3,7 +3,7 @@ module.exports = function(app) {
     var connectionString =  null;
 
     if (process.env.MONGODB_URI) {
-        connectionString = 'mongodb://web_dev_fp:123456@ds137207.mlab.com:37207/heroku_3djfhqrh';
+        connectionString = 'mongodb://jing:123456@ds159507.mlab.com:59507/heroku_16z70mm9';
     }
         else
     {
@@ -21,6 +21,7 @@ module.exports = function(app) {
 
     require("./services/user.service.server.js")(app);
     require("./services/review.service.server.js")(app);
+
 };
 
 
